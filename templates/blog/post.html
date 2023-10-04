@@ -1,0 +1,176 @@
+{% extends "blog/base.html" %}
+{% block content %}
+                <!-- Blog Post -->
+                <!-- Title -->
+                <h1>{{post.title}}</h1>
+                <!-- Author -->
+                <p class="lead">
+                    by <a href="#">{{post.user}}</a>
+                </p>
+                <hr>
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.published}}</p>
+                <hr>
+                <!-- Preview Image -->
+                <img class="img-responsive" src={{post.image}} alt="">
+                <hr>
+                <!-- Post Content -->
+                <p>{{post.content}}</p>
+                <hr>
+                <!-- Blog Comments -->
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Залиште коментар</h4>
+                    <div>
+                        <form action="{% url 'block_review' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <label>Ваш коментар</label>
+                                <textarea name="description"></textarea>
+                            </div>
+                            <div>
+                                <label>Ваше ім'я</label>
+                                <input type="text" name="user_name">
+                            </div>
+                            <div>
+                                <label>Ваш email</label>
+                                <input type="email" name="email">
+                            </div>
+                            <div><input type="datetime-local" name="date_comments"></div>
+                            <div><button type="submit" class="btn btn-primary">Зберегти</button></div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    {% for comment in post.comments_set.all %}
+                    <div class="view-comment">
+                        <h5>{{ comment.user_name }}</h5>
+                        <p>
+                            {{ comment.description}}
+                        </p>
+
+                    </div>
+                    {% endfor %}
+                </div>
+{% endblock %}
+<!--                           <div class="form-group">-->
+
+<!--                               -->
+<!--                               -->
+<!--                               -->
+<!--                               -->
+<!--                               -->
+<!--                               -->
+<!--                                <textarea class="form-control" rows="3"></textarea>-->
+<!--                           </div>-->
+<!--                        <button type="submit" class="btn btn-primary">Зберегти</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <hr>-->
+<!--                &lt;!&ndash; Posted Comments &ndash;&gt;-->
+<!--                &lt;!&ndash; Comment &ndash;&gt;-->
+<!--                <div class="media">-->
+<!--                    <a class="pull-left" href="#">-->
+<!--                        <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                    </a>-->
+<!--                    <div class="media-body">-->
+<!--                        <h4 class="media-heading">Start Bootstrap-->
+<!--                            <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                        </h4>-->
+<!--                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus-->
+<!--                        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.-->
+<!--                        Donec lacinia congue felis in faucibus.-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Comment &ndash;&gt;-->
+<!--                <div class="media">-->
+<!--                    <a class="pull-left" href="#">-->
+<!--                        <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                    </a>-->
+<!--                    <div class="media-body">-->
+<!--                        <h4 class="media-heading">Start Bootstrap-->
+<!--                            <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                        </h4>-->
+<!--                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus-->
+<!--                        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.-->
+<!--                        Donec lacinia congue felis in faucibus.-->
+<!--                        &lt;!&ndash; Nested Comment &ndash;&gt;-->
+<!--                        <div class="media">-->
+<!--                            <a class="pull-left" href="#">-->
+<!--                                <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                            </a>-->
+<!--                            <div class="media-body">-->
+<!--                                <h4 class="media-heading">Nested Start Bootstrap-->
+<!--                                    <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                                </h4>-->
+<!--                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras-->
+<!--                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate-->
+<!--                                fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Nested Comment &ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+
+
+
+<!----c 22 cтрочки по 77>
+<!--<div class="well">-->
+<!--                    <h4>Ваш коментар</h4>-->
+<!--                        <form role="form">-->
+<!--                           <div class="form-group">-->
+
+<!--                                <textarea class="form-control" rows="3"></textarea>-->
+<!--                           </div>-->
+<!--                        <button type="submit" class="btn btn-primary">Зберегти</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <hr>-->
+<!--                &lt;!&ndash; Posted Comments &ndash;&gt;-->
+<!--                &lt;!&ndash; Comment &ndash;&gt;-->
+<!--                <div class="media">-->
+<!--                    <a class="pull-left" href="#">-->
+<!--                        <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                    </a>-->
+<!--                    <div class="media-body">-->
+<!--                        <h4 class="media-heading">Start Bootstrap-->
+<!--                            <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                        </h4>-->
+<!--                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus-->
+<!--                        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.-->
+<!--                        Donec lacinia congue felis in faucibus.-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Comment &ndash;&gt;-->
+<!--                <div class="media">-->
+<!--                    <a class="pull-left" href="#">-->
+<!--                        <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                    </a>-->
+<!--                    <div class="media-body">-->
+<!--                        <h4 class="media-heading">Start Bootstrap-->
+<!--                            <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                        </h4>-->
+<!--                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus-->
+<!--                        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.-->
+<!--                        Donec lacinia congue felis in faucibus.-->
+<!--                        &lt;!&ndash; Nested Comment &ndash;&gt;-->
+<!--                        <div class="media">-->
+<!--                            <a class="pull-left" href="#">-->
+<!--                                <img class="media-object" src="http://placehold.it/64x64" alt="">-->
+<!--                            </a>-->
+<!--                            <div class="media-body">-->
+<!--                                <h4 class="media-heading">Nested Start Bootstrap-->
+<!--                                    <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                                </h4>-->
+<!--                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras-->
+<!--                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate-->
+<!--                                fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Nested Comment &ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
